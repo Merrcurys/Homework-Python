@@ -56,7 +56,11 @@ while True:
         case 6:
             result = num_1 ** 0.5
         case 7:
-            result = math.factorial(int(num_1))
+            try:
+                result = math.factorial(int(num_1))
+            except ValueError:
+                print("Делить на ноль нельзя, попробуйте еще раз.")
+                continue
         case 8:
             result = math.sin(num_1)
         case 9:

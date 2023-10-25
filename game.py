@@ -1,6 +1,7 @@
 import time
 import random
 import json
+import csv
 
 
 def print_output(text):
@@ -146,21 +147,39 @@ def main():
                         data = json.load(file)
                         player["monster"] = list(encountered_monsters)
                         data["save"].append(player)
+                    # сохранение в json
                     with open("data.json", "w", encoding="utf-8") as file:
                         json.dump(data, file, ensure_ascii=False)
+                    # сохранение в csv
+                    with open("data.csv", "w", newline="") as file:
+                        filednames = ["health", "name",
+                                      "damage", "protection", "monster"]
+                        writer = csv.DictWriter(file, fieldnames=filednames)
+                        writer.writeheader()
+                        for row in data["save"]:
+                            writer.writerow(row)
                     print_output("Ваши данные были сохранены.")
             else:
                 print_output(
                     f"Сохранить вашего персонажа или удалить? (введите \"удалить\" или любую клавишу если \"сохранить\")")
                 if input().lower() != "удалить":
+                    # сохранение в json
                     with open("data.json", "r", encoding="utf-8") as file:
                         data = json.load(file)
                         for player_elem in data["save"]:
                             if player_elem["name"] == player["name"]:
                                 player_elem["monster"] = list(
                                     encountered_monsters | set(player_elem["monster"]))
-                                print_output("Ваши данные были сохранены.")
                                 break
+                    # сохранение в csv
+                    with open("data.csv", "w", newline="") as file:
+                        filednames = ["health", "name",
+                                      "damage", "protection", "monster"]
+                        writer = csv.DictWriter(file, fieldnames=filednames)
+                        writer.writeheader()
+                        for row in data["save"]:
+                            writer.writerow(row)
+                    print_output("Ваши данные были сохранены.")
                 else:
                     for player_elem in data["save"]:
                         if player_elem["name"] == player["name"]:
@@ -169,6 +188,13 @@ def main():
                             break
                 with open("data.json", "w", encoding="utf-8") as file:
                     json.dump(data, file, ensure_ascii=False)
+                with open("data.csv", "w", newline="") as file:  # сохранение в csv
+                    filednames = ["health", "name",
+                                  "damage", "protection", "monster"]
+                    writer = csv.DictWriter(file, fieldnames=filednames)
+                    writer.writeheader()
+                    for row in data["save"]:
+                        writer.writerow(row)
             break
         else:
             print_output(

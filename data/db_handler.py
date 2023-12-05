@@ -3,7 +3,7 @@ import sqlite3 as sq
 
 # создает таблицы, если они еще не созданы.
 def create_data():
-    with sq.connect("database.db") as con:
+    with sq.connect("./data/database.db") as con:
         cur = con.cursor()
 
         cur.execute(  # ! таблица акков

@@ -1,5 +1,5 @@
 import sqlite3 as sq
-from registration import Registration
+from Classes.registration import Registration
 
 
 class User(Registration):
@@ -23,7 +23,6 @@ class User(Registration):
         self.conn.commit()
 
     def check_parcels(self, id_account):
-
         self.cursor.execute(
             """
             Select ID_Client

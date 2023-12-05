@@ -1,5 +1,5 @@
 import sqlite3 as sq
-from registration import Registration
+from Classes.registration import Registration
 
 
 class Employee(Registration):

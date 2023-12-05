@@ -1,6 +1,7 @@
-from user import User
-from employee import Employee
+from Classes.user import User
+from Classes.employee import Employee
 import os
+
 
 
 def main():

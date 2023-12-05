@@ -1,11 +1,11 @@
 import sqlite3 as sq
-from db_handler import create_data
+from data.db_handler import create_data
 
 
 class Registration:
     def __init__(self):
         create_data()
-        self.conn = sq.connect("database.db")
+        self.conn = sq.connect("./data/database.db")
         self.cursor = self.conn.cursor()
 
     def loggin(self, login, password):
@@ -17,15 +17,18 @@ class Registration:
             """, (login, password))
         user = [user for user in self.cursor]
         return user
-    
-    def create_account(self, login, password, if_staff):
+
+    def __if_login(self, login):
         self.cursor.execute(
             """
             Select Login
             FROM Accounts
             WHERE Login = ?
             """, (login,))
-        if not [user for user in self.cursor]:
+        return self.cursor
+
+    def create_account(self, login, password, if_staff):
+        if not [user for user in self.__if_login(login)]:
             self.cursor.execute(
                 """
                 INSERT INTO Accounts

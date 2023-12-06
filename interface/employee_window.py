@@ -13,9 +13,7 @@ def interface_staff(object, user_id):
     print("3. Отследить посылки")
     print("4. Создать посылку")
     print("5. Изменить статус посылки")
-    print("6. Удалить аккаунт с данными")
-    print("7. Выйти")
-    #TODO: удалить посылку
+    print("6. Выйти")
     while True:
         answer = input("Введите номер команды: ")
         match answer:
@@ -60,9 +58,6 @@ def interface_staff(object, user_id):
                 except (ValueError):
                     out_red("Вы ввели неправильное значение, попробуйте еще раз!")
             case "6":
-                # TODO: удалить акк
-                pass
-            case "7":
                 (lambda: os.system('cls'))()
                 out_blue(
                     "--------------------------------ПОЧТА НЕРОССИИ--------------------------------")

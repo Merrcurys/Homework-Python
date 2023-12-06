@@ -10,8 +10,7 @@ def interface_user(object, user_id):
         "--------------------------------ВАШ КАБИНЕТ-----------------------------------")
     print("1. Изменить свои данные")
     print("2. Отследить посылки")
-    print("3. Удалить аккаунт со всеми данными")
-    print("4. Выйти")
+    print("3. Выйти")
     while True:
         answer = input("Введите номер команды: ")
         match answer:
@@ -26,12 +25,13 @@ def interface_user(object, user_id):
                 packages = object.check_parcels(user_id)
                 if packages:
                     for package in packages:
-                        print(f"Посылка: {package[0]} - {package[1]}")
+                        if package[1] == "Доставлено":
+                            out_green(f"Посылка: {package[0]} - {package[1]}")
+                        else:
+                            print(f"Посылка: {package[0]} - {package[1]}")
                 else:
                     out_red("У вас нету отправленных посылок.")
             case "3":
-                pass
-            case "4":
                 (lambda: os.system('cls'))()
                 out_blue(
                     "--------------------------------ПОЧТА НЕРОССИИ--------------------------------")

@@ -40,6 +40,3 @@ class Registration:
             self.conn.commit()
         else:
             out_red("Вы уже зарегестрированы!")
-
-    def delete_account(self): #TODO: реализовать функцию
-        pass

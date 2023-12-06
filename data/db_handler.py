@@ -18,23 +18,23 @@ def create_data():
         cur.execute(  # ! таблица персонала
             """
             CREATE TABLE IF NOT EXISTS Staff (
-            ID_Staff     INTEGER       PRIMARY KEY AUTOINCREMENT,
-            FirstName    VARCHAR(50)   NOT NULL,
-            SecondName   VARCHAR(50)   NOT NULL,
-            Surname      VARCHAR(50)   NOT NULL,
-            Account_ID   INTEGER       NOT NULL,
+            ID_Staff     INTEGER       PRIMARY    KEY AUTOINCREMENT,
+            FirstName    VARCHAR(50)              NOT NULL,
+            SecondName   VARCHAR(50)              NOT NULL,
+            Surname      VARCHAR(50)              NOT NULL,
+            Account_ID   INTEGER       UNIQUE     NOT NULL,
             FOREIGN KEY  (Account_ID)  REFERENCES Accounts(ID_Account))
             """)
 
         cur.execute(  # ! таблица клиентов
             """
             CREATE TABLE IF NOT EXISTS Clients (
-            ID_Client    INTEGER       PRIMARY KEY AUTOINCREMENT,
-            FirstName    VARCHAR(50)   NOT NULL,
-            SecondName   VARCHAR(50)   NOT NULL,
-            Surname      VARCHAR(50)   NOT NULL,
-            Address      TEXT          NOT NULL,
-            Account_ID   INTEGER       NOT NULL,
+            ID_Client    INTEGER       PRIMARY    KEY AUTOINCREMENT,
+            FirstName    VARCHAR(50)              NOT NULL,
+            SecondName   VARCHAR(50)              NOT NULL,
+            Surname      VARCHAR(50)              NOT NULL,
+            Address      TEXT                     NOT NULL,
+            Account_ID   INTEGER       UNIQUE     NOT NULL,
             FOREIGN KEY  (Account_ID)  REFERENCES Accounts(ID_Account))
             """)
 

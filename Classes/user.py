@@ -1,25 +1,19 @@
 import sqlite3 as sq
-from Classes.registration import Registration
+from classes.registration import Registration
 
 
 class User(Registration):
     def __init__(self):
         Registration.__init__(self)
 
-    def update_user_info(self, data):
+    def update_user_info(self, data): #TODO: разобраться с тем что реплейс меняет п.к из-за чего ломает в.к.
         self.cursor.execute(
             """
             REPLACE INTO Clients
             (FirstName, SecondName, Surname, Address, Account_ID)
             VALUES (?,?,?,?,?)
             """, (data))
-        print("Данные клиента обновлены.")
-        self.conn.commit()
-
-    def delete_user_info(self, id):
-        self.cursor.execute(
-            "DELETE FROM Clients WHERE ID_Client = ?", (id,))
-        print("Клиента обновлены.")
+        print("Ваши данные обновлены.")
         self.conn.commit()
 
     def check_parcels(self, id_account):

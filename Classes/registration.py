@@ -1,5 +1,6 @@
 import sqlite3 as sq
 from data.db_handler import create_data
+from interface.colors_print import *
 
 
 class Registration:
@@ -35,7 +36,10 @@ class Registration:
                 (Login, Password, If_Staff)
                 VALUES (?,?, ?)
                 """, (login, password, if_staff))
-            print("Клиент добавлен.")
+            print("Вы зарегестрировались.")
             self.conn.commit()
         else:
-            print("Вы уже зарегестрированы!")
+            out_red("Вы уже зарегестрированы!")
+
+    def delete_account(self): #TODO: реализовать функцию
+        pass
